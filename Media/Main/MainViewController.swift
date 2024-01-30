@@ -81,7 +81,7 @@ class MainViewController: UIViewController {
     func configureCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 3, height: 230)
-        layout.minimumLineSpacing = 5 //PagingEnabled가 예쁘게 실행되게 만들려고 모든 여백을 0으로 만듦
+        layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.scrollDirection = .horizontal
