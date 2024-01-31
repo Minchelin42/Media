@@ -12,6 +12,6 @@ struct TVModel: Decodable {
 }
 
 struct TV: Decodable {
-    let poster_path: String?
     let name: String
+    let poster_path: String?
 }

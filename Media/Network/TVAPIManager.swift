@@ -27,4 +27,39 @@ class TVAPIManager {
             }
         }
     }
+    
+    func getDramaAPI(APItype: String, completionHandler: @escaping((DramaModel) -> Void)) {
+        print(#function)
+        let url = "https://api.themoviedb.org/3/\(APItype)?language=ko-KR"
+        let header: HTTPHeaders = ["Authorization": APIKey.tmDB]
+        
+        AF.request(url, headers: header).responseDecodable(of: DramaModel.self) { response in
+            switch response.result {
+            case .success(let success):
+                print("success", success)
+                
+                completionHandler(success)
+            case .failure(let failure):
+                print("fail", failure)
+            }
+        }
+    }
+    
+    func getCastAPI(APItype: String, completionHandler: @escaping((CastModel) -> Void)) {
+        print(#function)
+        let url = "https://api.themoviedb.org/3/\(APItype)"
+        let header: HTTPHeaders = ["Authorization": APIKey.tmDB]
+        
+        AF.request(url, headers: header).responseDecodable(of: CastModel.self) { response in
+            switch response.result {
+            case .success(let success):
+                print("success", success)
+                
+                completionHandler(success)
+            case .failure(let failure):
+                print("fail", failure)
+            }
+        }
+    }
+    
 }
