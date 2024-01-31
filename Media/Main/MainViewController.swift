@@ -37,12 +37,18 @@ class MainViewController: UIViewController {
         configureLayout()
         configureView()
         
+        let group = DispatchGroup()
+        
         for index in 0...APIList.count - 1 {
+            group.enter()
             TVAPIManager.shared.getTVAPI(APItype: APIList[index]) { tv in
                 self.posterList[index] = tv
-                self.topCollectionView.reloadData()
-                self.mainTableView.reloadData()
+                group.leave()
             }
+        }
+        group.notify(queue: .main) {
+            self.topCollectionView.reloadData()
+            self.mainTableView.reloadData()
         }
     }
     
@@ -75,9 +81,7 @@ class MainViewController: UIViewController {
         mainTableView.rowHeight = 240
         mainTableView.register(PosterTableViewCell.self, forCellReuseIdentifier: "PosterTableViewCell")
     }
-    
-    
-    
+
     func configureCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 3, height: 230)
@@ -155,8 +159,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     
 }
-
-
 
 #Preview {
     MainViewController()
