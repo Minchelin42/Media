@@ -11,99 +11,46 @@ import SnapKit
 
 class MainViewController: UIViewController {
 
-    lazy var topCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
-    let mainTableView = UITableView()
-    
-    var posterList: [TVModel] = [
-        TVModel(results: []),
-        TVModel(results: []),
-        TVModel(results: [])
-    ]
-    
-    let APIList = ["trending/tv/day", "tv/top_rated", "tv/popular"]
-    
-    let listTitle = ["Top Rated List", "Popular List"]
-    
-    let newTitle = ["새로운 에피소드", "새로운 시리즈", "새로운 작품"]
+    let mainView = MainView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(posterList)
-        
+
         view.backgroundColor = .black
         
-        configureHierarchy()
-        configureLayout()
-        configureView()
+        mainView.topCollectionView.delegate = self
+        mainView.topCollectionView.dataSource = self
+
+        mainView.mainTableView.delegate = self
+        mainView.mainTableView.dataSource = self
         
         let group = DispatchGroup()
         
-        for index in 0...APIList.count - 1 {
+        for index in 0...mainView.APIList.count - 1 {
             group.enter()
-            TVAPIManager.shared.getTVAPI(APItype: APIList[index]) { tv in
-                self.posterList[index] = tv
+            TVAPIManager.shared.getTVAPI(APItype: mainView.APIList[index]) { tv in
+                self.mainView.posterList[index] = tv
                 group.leave()
             }
         }
         group.notify(queue: .main) {
-            self.topCollectionView.reloadData()
-            self.mainTableView.reloadData()
+            self.mainView.topCollectionView.reloadData()
+            self.mainView.mainTableView.reloadData()
         }
     }
     
-    func configureHierarchy(){
-        view.addSubview(topCollectionView)
-        view.addSubview(mainTableView)
-    }
     
-    func configureLayout(){
-        topCollectionView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(250)
-        }
-        
-        mainTableView.snp.makeConstraints { make in
-            make.top.equalTo(topCollectionView.snp.bottom).offset(20)
-            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-    }
-    
-    func configureView(){
-        topCollectionView.backgroundColor = .clear
-        topCollectionView.delegate = self
-        topCollectionView.dataSource = self
-        topCollectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: "Poster")
-        
-        mainTableView.backgroundColor = .clear
-        mainTableView.delegate = self
-        mainTableView.dataSource = self
-        mainTableView.rowHeight = 240
-        mainTableView.register(PosterTableViewCell.self, forCellReuseIdentifier: "PosterTableViewCell")
-    }
-
-    func configureCollectionViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 3, height: 230)
-        layout.minimumLineSpacing = 5
-        layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.scrollDirection = .horizontal
-
-        return layout
-        
-    }
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return APIList.count - 1
+        return mainView.APIList.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PosterTableViewCell", for: indexPath) as! PosterTableViewCell
         
-        cell.titleLabel.text = listTitle[indexPath.row]
+        cell.titleLabel.text = mainView.listTitle[indexPath.row]
         cell.collectionView.delegate = self
         cell.collectionView.dataSource = self
         cell.collectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: "Poster")
@@ -118,18 +65,18 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if topCollectionView == collectionView {
-            return posterList[0].results.count
+        if mainView.topCollectionView == collectionView {
+            return mainView.posterList[0].results.count
         } else {
-            return posterList[collectionView.tag].results.count
+            return mainView.posterList[collectionView.tag].results.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Poster", for: indexPath) as! PosterCollectionViewCell
         
-        if topCollectionView == collectionView {
-            let item = posterList[0].results[indexPath.row]
+        if mainView.topCollectionView == collectionView {
+            let item = mainView.posterList[0].results[indexPath.row]
             
             if item.poster_path != nil {
                 let url = URL(string:"https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
@@ -137,12 +84,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             } else {
                 cell.posterImageView.image = UIImage(systemName: "xmark")
             }
-            cell.textLabel.text = newTitle.randomElement()
+            cell.textLabel.text = mainView.newTitle.randomElement()
             cell.posterNameLabel.text = item.name
             
             return cell
         } else {
-            let item = posterList[collectionView.tag].results[indexPath.row]
+            let item = mainView.posterList[collectionView.tag].results[indexPath.row]
             
             if item.poster_path != nil {
                 let url = URL(string:"https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
@@ -150,7 +97,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             } else {
                 cell.posterImageView.image = UIImage(systemName: "xmark")
             }
-            cell.textLabel.text = newTitle.randomElement()
+            cell.textLabel.text = mainView.newTitle.randomElement()
             cell.posterNameLabel.text = item.name
             
             return cell
