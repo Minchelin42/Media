@@ -11,12 +11,15 @@ import Alamofire
 class TVAPIManager {
     static let shared = TVAPIManager()
     
-    func getTVAPI(APItype: String, completionHandler: @escaping((TVModel) -> Void)) {
+    func getTVAPI(api: TVAPI, completionHandler: @escaping((TVModel) -> Void)) {
         print(#function)
-        let url = "https://api.themoviedb.org/3/\(APItype)?language=ko-KR"
-        let header: HTTPHeaders = ["Authorization": APIKey.tmDB]
-        
-        AF.request(url, headers: header).responseDecodable(of: TVModel.self) { response in
+
+        AF.request(api.endPoint,
+                   method: api.method,
+                   parameters: api.parameter,
+                   encoding: URLEncoding(destination: .queryString),
+                   headers: api.header)
+        .responseDecodable(of: TVModel.self) { response in
             switch response.result {
             case .success(let success):
                 print("success", success)
@@ -28,12 +31,15 @@ class TVAPIManager {
         }
     }
     
-    func getDramaAPI(APItype: String, completionHandler: @escaping((DramaModel) -> Void)) {
+    func getDramaAPI(api: TVAPI, completionHandler: @escaping((DramaModel) -> Void)) {
         print(#function)
-        let url = "https://api.themoviedb.org/3/\(APItype)?language=ko-KR"
-        let header: HTTPHeaders = ["Authorization": APIKey.tmDB]
         
-        AF.request(url, headers: header).responseDecodable(of: DramaModel.self) { response in
+        AF.request(api.endPoint, 
+                   method: api.method,
+                   parameters: api.parameter,
+                   encoding: URLEncoding(destination: .queryString),
+                   headers: api.header)
+        .responseDecodable(of: DramaModel.self) { response in
             switch response.result {
             case .success(let success):
                 print("success", success)
@@ -45,12 +51,12 @@ class TVAPIManager {
         }
     }
     
-    func getCastAPI(APItype: String, completionHandler: @escaping((CastModel) -> Void)) {
+    func getCastAPI(api: TVAPI, completionHandler: @escaping((CastModel) -> Void)) {
         print(#function)
-        let url = "https://api.themoviedb.org/3/\(APItype)"
-        let header: HTTPHeaders = ["Authorization": APIKey.tmDB]
         
-        AF.request(url, headers: header).responseDecodable(of: CastModel.self) { response in
+        AF.request(api.endPoint,
+                   headers: api.header)
+        .responseDecodable(of: CastModel.self) { response in
             switch response.result {
             case .success(let success):
                 print("success", success)

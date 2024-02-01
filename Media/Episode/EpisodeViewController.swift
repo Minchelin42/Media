@@ -9,8 +9,7 @@ import UIKit
 import Kingfisher
 
 class EpisodeViewController: UIViewController {
-
-
+    
     let mainView = EpisodeView()
     
     override func loadView() {
@@ -22,25 +21,31 @@ class EpisodeViewController: UIViewController {
         
         view.backgroundColor = .systemPink
         
+        mainView.castingCollectionView.delegate = self
+        mainView.castingCollectionView.dataSource = self
+        mainView.episodeTableView.delegate = self
+        mainView.episodeTableView.dataSource = self
+        
         let group = DispatchGroup()
         
         group.enter()
-        TVAPIManager.shared.getCastAPI(APItype: "tv/\(mainView.dramaCode)/aggregate_credits") { cast in
+        TVAPIManager.shared.getCastAPI(api: .cast(code: mainView.dramaCode)) { cast in
             self.mainView.castList = cast
             group.leave()
         }
         
         group.enter()
-        TVAPIManager.shared.getTVAPI(APItype: "tv/\(mainView.dramaCode)/recommendations") { tv in
+        TVAPIManager.shared.getTVAPI(api: .recommand(code: mainView.dramaCode)) { tv in
             self.mainView.recommandList = tv
             group.leave()
         }
         
         group.enter()
-        TVAPIManager.shared.getDramaAPI(APItype: "tv/\(mainView.dramaCode)") { drama in
+        TVAPIManager.shared.getDramaAPI(api: .detail(code: mainView.dramaCode)) { drama in
             self.mainView.dramaList = drama
             group.leave()
         }
+        
         
         group.notify(queue: .main) {
             print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️")
@@ -48,11 +53,6 @@ class EpisodeViewController: UIViewController {
             self.mainView.castingCollectionView.reloadData()
             self.mainView.episodeTableView.reloadData()
         }
-        
-        mainView.castingCollectionView.delegate = self
-        mainView.castingCollectionView.dataSource = self
-        mainView.episodeTableView.delegate = self
-        mainView.episodeTableView.dataSource = self
 
     }
     

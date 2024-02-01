@@ -33,8 +33,8 @@ class EpisodeView: BaseView {
     var dramaList: DramaModel = DramaModel(name: "", seasons: [], overview: "", poster_path: "")
     var recommandList: TVModel = TVModel(results: [])
     
-    let dramaCode = "70123"
-    //19885: 셜록
+    let dramaCode = 19885
+    //19885: 셜록, 70123: 신서유기
     
     
     override func configureHierarchy() {

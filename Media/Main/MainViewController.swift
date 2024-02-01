@@ -13,6 +13,10 @@ class MainViewController: UIViewController {
 
     let mainView = MainView()
     
+    override func loadView() {
+        self.view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,13 +30,25 @@ class MainViewController: UIViewController {
         
         let group = DispatchGroup()
         
-        for index in 0...mainView.APIList.count - 1 {
-            group.enter()
-            TVAPIManager.shared.getTVAPI(APItype: mainView.APIList[index]) { tv in
-                self.mainView.posterList[index] = tv
-                group.leave()
-            }
+        group.enter()
+        TVAPIManager.shared.getTVAPI(api: .trending) { tv in
+            self.mainView.posterList[0] = tv
+            group.leave()
         }
+        
+        group.enter()
+        TVAPIManager.shared.getTVAPI(api: .top_rated) { tv in
+            self.mainView.posterList[1] = tv
+            group.leave()
+        }
+        
+        group.enter()
+        TVAPIManager.shared.getTVAPI(api: .popular) { tv in
+            self.mainView.posterList[2] = tv
+            group.leave()
+        }
+        
+        
         group.notify(queue: .main) {
             self.mainView.topCollectionView.reloadData()
             self.mainView.mainTableView.reloadData()
@@ -44,7 +60,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainView.APIList.count - 1
+        return mainView.posterList.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,12 +90,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Poster", for: indexPath) as! PosterCollectionViewCell
-        
+        let imageBaseURL = "https://image.tmdb.org/t/p/w500"
         if mainView.topCollectionView == collectionView {
             let item = mainView.posterList[0].results[indexPath.row]
             
             if item.poster_path != nil {
-                let url = URL(string:"https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
+                let url = URL(string: imageBaseURL + "\(item.poster_path ?? "")")
                 cell.posterImageView.kf.setImage(with: url, placeholder: UIImage(systemName: "suit.heart"))
             } else {
                 cell.posterImageView.image = UIImage(systemName: "xmark")
@@ -92,7 +108,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let item = mainView.posterList[collectionView.tag].results[indexPath.row]
             
             if item.poster_path != nil {
-                let url = URL(string:"https://image.tmdb.org/t/p/w500\(item.poster_path ?? "")")
+                let url = URL(string: imageBaseURL + "\(item.poster_path ?? "")")
                 cell.posterImageView.kf.setImage(with: url, placeholder: UIImage(systemName: "suit.heart"))
             } else {
                 cell.posterImageView.image = UIImage(systemName: "xmark")

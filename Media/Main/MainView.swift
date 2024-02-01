@@ -18,8 +18,6 @@ class MainView: BaseView {
         TVModel(results: [])
     ]
     
-    let APIList = ["trending/tv/day", "tv/top_rated", "tv/popular"]
-    
     let listTitle = ["Top Rated List", "Popular List"]
     
     let newTitle = ["새로운 에피소드", "새로운 시리즈", "새로운 작품"]
