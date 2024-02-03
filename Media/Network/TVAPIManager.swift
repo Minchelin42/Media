@@ -51,6 +51,27 @@ class TVAPIManager {
         }
     }
     
+    
+    func getEpisodeDetailAPI(api: TVAPI, completionHandler: @escaping((EpisodeDetailModel) -> Void)) {
+        print(#function)
+        
+        AF.request(api.endPoint,
+                   method: api.method,
+                   parameters: api.parameter,
+                   encoding: URLEncoding(destination: .queryString),
+                   headers: api.header)
+        .responseDecodable(of: EpisodeDetailModel.self) { response in
+            switch response.result {
+            case .success(let success):
+                print("success", success)
+                
+                completionHandler(success)
+            case .failure(let failure):
+                print("fail", failure)
+            }
+        }
+    }
+    
     func getCastAPI(api: TVAPI, completionHandler: @escaping((CastModel) -> Void)) {
         print(#function)
         

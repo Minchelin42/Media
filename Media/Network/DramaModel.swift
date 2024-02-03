@@ -18,4 +18,6 @@ struct Season: Decodable {
     let name: String
     let overview: String?
     let poster_path: String?
+    let id: Int
+    let season_number: Int
 }
