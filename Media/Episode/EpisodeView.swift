@@ -33,14 +33,14 @@ class EpisodeView: BaseView {
     var dramaList: DramaModel = DramaModel(name: "", seasons: [], overview: "", poster_path: "")
     var recommandList: TVModel = TVModel(results: [])
     
-    let dramaCode = 19885
+    var dramaCode = 19885
     //19885: 셜록, 70123: 신서유기
     
     
     override func configureHierarchy() {
         print("🩷🩷🩷🩷🩷🩷🩷🩷🩷" + #function)
         addSubview(dramaPoster)
-        dramaPoster.addSubview(overlayView)
+        addSubview(overlayView)
         addSubview(dramaTitle)
         addSubview(dramaOverView)
         addSubview(castingCollectionView)
@@ -58,20 +58,18 @@ class EpisodeView: BaseView {
             make.horizontalEdges.bottom.equalToSuperview()
             make.top.equalTo(self)
         }
-        
         dramaTitle.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(5)
+            make.top.equalTo(safeAreaLayoutGuide).offset(15)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
         }
         
         dramaOverView.snp.makeConstraints { make in
             make.top.equalTo(dramaTitle.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
-            make.height.lessThanOrEqualTo(110)
+            make.height.lessThanOrEqualTo(105)
         }
         
         castingCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(dramaOverView.snp.bottom).offset(20)
             make.bottom.equalTo(dramaPoster.snp.bottom).inset(20)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(140)
@@ -92,18 +90,13 @@ class EpisodeView: BaseView {
         
         dramaOverView.text = "\(dramaList.overview)"
         
-//        castingCollectionView.delegate = self
-//        castingCollectionView.dataSource = self
         castingCollectionView.register(CastingCollectionViewCell.self, forCellWithReuseIdentifier: "Casting")
         castingCollectionView.backgroundColor = .clear
-        
-//        episodeTableView.delegate = self
-//        episodeTableView.dataSource = self
+
         episodeTableView.rowHeight = 150
         episodeTableView.register(EpisodeTableViewCell.self, forCellReuseIdentifier: "EpisodeTableViewCell")
         episodeTableView.register(RecommandTableViewCell.self, forCellReuseIdentifier: "RecommandTableViewCell")
         episodeTableView.backgroundColor = .black
-        episodeTableView.allowsSelection = false
     }
     
     
@@ -120,5 +113,8 @@ class EpisodeView: BaseView {
         
     }
     
-    
+}
+
+#Preview {
+    EpisodeViewController()
 }

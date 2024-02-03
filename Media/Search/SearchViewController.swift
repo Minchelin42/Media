@@ -52,6 +52,15 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let vc = EpisodeViewController()
+        
+        vc.mainView.dramaCode = mainView.resultList[indexPath.row].id
+        present(vc, animated: true)
+        
+    }
 
 }
 

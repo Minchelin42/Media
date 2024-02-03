@@ -94,6 +94,19 @@ extension EpisodeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if indexPath.row != mainView.dramaList.seasons.count {
+            
+            let vc = EpisodeDetailViewController()
+            
+            vc.mainView.id = self.mainView.dramaCode
+            vc.mainView.season = self.mainView.dramaList.seasons[indexPath.row].season_number
+            
+            present(vc, animated: true)
+        }
+    }
+    
     
 }
 
@@ -141,6 +154,17 @@ extension EpisodeViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
             return cell
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        if mainView.castingCollectionView != collectionView {
+            let vc = EpisodeViewController()
+            
+            vc.mainView.dramaCode = mainView.recommandList.results[indexPath.row].id
+            present(vc, animated: true)
+        }
+        
     }
 
 }

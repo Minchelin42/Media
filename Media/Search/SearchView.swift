@@ -32,6 +32,7 @@ class SearchView: BaseView {
     
     override func configureView() {
         searchBar.barStyle = .black
+        searchBar.placeholder = "시청하고싶은 콘텐츠를 입력하세요"
         collectionView.backgroundColor = .clear
         
         collectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: "Poster")
