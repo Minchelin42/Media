@@ -24,8 +24,8 @@ class EpisodeDetailViewController: UIViewController {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         
-        TVAPIManager.shared.getEpisodeDetailAPI(api: .episodeDetail(code: mainView.id, season: mainView.season)) { episode in
-            self.mainView.episode = episode
+        TVAPIManager.shared.APIcall(type: EpisodeDetailModel.self, api: .episodeDetail(code: mainView.id, season: mainView.season)) { result in
+            self.mainView.episode = result
             self.mainView.tableView.reloadData()
             self.mainView.configureView()
         }

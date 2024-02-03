@@ -30,23 +30,28 @@ class MainViewController: UIViewController {
         
         let group = DispatchGroup()
         
-        group.enter()
-        TVAPIManager.shared.getTVAPI(api: .trending) { tv in
+        group.enter()      
+        TVAPIManager.shared.APIcall(type: TVModel.self, api: .trending) { tv in
             self.mainView.posterList[0] = tv
             group.leave()
         }
         
+        
+        
+        
         group.enter()
-        TVAPIManager.shared.getTVAPI(api: .top_rated) { tv in
+        TVAPIManager.shared.APIcall(type: TVModel.self, api: .top_rated) { tv in
             self.mainView.posterList[1] = tv
             group.leave()
         }
         
+        
         group.enter()
-        TVAPIManager.shared.getTVAPI(api: .popular) { tv in
+        TVAPIManager.shared.APIcall(type: TVModel.self, api: .popular) { tv in
             self.mainView.posterList[2] = tv
             group.leave()
         }
+        
         
         
         group.notify(queue: .main) {

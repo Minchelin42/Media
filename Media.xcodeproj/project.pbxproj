@@ -145,8 +145,8 @@
 				3925F6322B692A5A00BF93F3 /* TVModel.swift */,
 				39F323A82B6A44C400389ADA /* DramaModel.swift */,
 				39F323AA2B6A499100389ADA /* CastModel.swift */,
-				39AE668D2B6B89FD00C2C10E /* TVAPI.swift */,
 				39AE66A12B6EC29F00C2C10E /* EpisodeDetailModel.swift */,
+				39AE668D2B6B89FD00C2C10E /* TVAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";

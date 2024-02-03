@@ -27,21 +27,21 @@ class EpisodeViewController: UIViewController {
         mainView.episodeTableView.dataSource = self
         
         let group = DispatchGroup()
-        
+
         group.enter()
-        TVAPIManager.shared.getCastAPI(api: .cast(code: mainView.dramaCode)) { cast in
+        TVAPIManager.shared.APIcall(type: CastModel.self, api: .cast(code: mainView.dramaCode)) { cast in
             self.mainView.castList = cast
             group.leave()
         }
-        
+
         group.enter()
-        TVAPIManager.shared.getTVAPI(api: .recommand(code: mainView.dramaCode)) { tv in
+        TVAPIManager.shared.APIcall(type: TVModel.self, api: .recommand(code: mainView.dramaCode)) { tv in
             self.mainView.recommandList = tv
             group.leave()
         }
         
         group.enter()
-        TVAPIManager.shared.getDramaAPI(api: .detail(code: mainView.dramaCode)) { drama in
+        TVAPIManager.shared.APIcall(type: DramaModel.self, api: .detail(code: mainView.dramaCode)) { drama in
             self.mainView.dramaList = drama
             group.leave()
         }

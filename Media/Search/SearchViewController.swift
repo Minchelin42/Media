@@ -66,7 +66,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        TVAPIManager.shared.getTVAPI(api: .search(query: searchBar.text!)) { result in
+        TVAPIManager.shared.APIcall(type: TVModel.self, api: .search(query: searchBar.text!)) { result in
             self.mainView.resultList = result.results
             self.mainView.collectionView.reloadData()
             self.view.endEditing(true)
