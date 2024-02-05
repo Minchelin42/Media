@@ -30,29 +30,35 @@ class MainViewController: UIViewController {
         
         let group = DispatchGroup()
         
-        group.enter()      
-        TVAPIManager.shared.APIcall(type: TVModel.self, api: .trending) { tv in
-            self.mainView.posterList[0] = tv
+        group.enter()
+        TVSessionManager.shared.fetchTV(api: .trending) { tv, error in
+            if let tv = tv {
+                self.mainView.posterList[0] = tv
+            } else {
+                print("오류 발생했습니다~ 잠온당...ㅜ")
+            }
             group.leave()
         }
-        
-        
-        
         
         group.enter()
-        TVAPIManager.shared.APIcall(type: TVModel.self, api: .top_rated) { tv in
-            self.mainView.posterList[1] = tv
+        TVSessionManager.shared.fetchTV(api: .top_rated) { tv, error in
+            if let tv = tv {
+                self.mainView.posterList[1] = tv
+            } else {
+                print("오류 발생했습니다~ 잠온당...ㅜ")
+            }
             group.leave()
         }
-        
         
         group.enter()
-        TVAPIManager.shared.APIcall(type: TVModel.self, api: .popular) { tv in
-            self.mainView.posterList[2] = tv
+        TVSessionManager.shared.fetchTV(api: .popular) { tv, error in
+            if let tv = tv {
+                self.mainView.posterList[2] = tv
+            } else {
+                print("오류 발생했습니다~ 잠온당...ㅜ")
+            }
             group.leave()
         }
-        
-        
         
         group.notify(queue: .main) {
             self.mainView.topCollectionView.reloadData()

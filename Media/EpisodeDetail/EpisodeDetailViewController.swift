@@ -24,10 +24,14 @@ class EpisodeDetailViewController: UIViewController {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         
-        TVAPIManager.shared.APIcall(type: EpisodeDetailModel.self, api: .episodeDetail(code: mainView.id, season: mainView.season)) { result in
-            self.mainView.episode = result
-            self.mainView.tableView.reloadData()
-            self.mainView.configureView()
+        TVAPIManager.shared.APIcall(type: EpisodeDetailModel.self, api: .episodeDetail(code: mainView.id, season: mainView.season)) { result, error in
+            if let result = result {
+                self.mainView.episode = result
+                self.mainView.tableView.reloadData()
+                self.mainView.configureView()
+            } else {
+                print("지금 통신에 뭔가 문제가 있다 내 문제는 잠이 너무 오는 것임ㅠ...")
+            }
         }
         
     }

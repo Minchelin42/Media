@@ -66,10 +66,14 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        TVAPIManager.shared.APIcall(type: TVModel.self, api: .search(query: searchBar.text!)) { result in
-            self.mainView.resultList = result.results
-            self.mainView.collectionView.reloadData()
-            self.view.endEditing(true)
+        TVAPIManager.shared.APIcall(type: TVModel.self, api: .search(query: searchBar.text!)) { result, error in
+            if let result = result {
+                self.mainView.resultList = result.results
+                self.mainView.collectionView.reloadData()
+                self.view.endEditing(true)
+            } else {
+                print("지금 통신에 뭔가 문제가 있다 내 문제는 잠이 너무 오는 것임ㅠ...")
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ import Alamofire
 class TVAPIManager {
     static let shared = TVAPIManager()
     
-    func APIcall<T: Decodable>(type: T.Type, api: TVAPI, completionHandler: @escaping((T) -> Void)) {
+    func APIcall<T: Decodable>(type: T.Type, api: TVAPI, completionHandler: @escaping((T?, AFError?) -> Void)) {
         print(#function)
 
         AF.request(api.endPoint,
@@ -24,9 +24,11 @@ class TVAPIManager {
             case .success(let success):
                 print("success", success)
                 
-                completionHandler(success)
+                completionHandler(success, nil)
             case .failure(let failure):
                 print("fail", failure)
+                
+                completionHandler(nil, failure)
             }
         }
     }

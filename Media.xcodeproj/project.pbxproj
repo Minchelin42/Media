@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390C226F2B71493C00792385 /* TVSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C226E2B71493C00792385 /* TVSessionManager.swift */; };
 		3925F60D2B69121C00BF93F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925F60C2B69121C00BF93F3 /* AppDelegate.swift */; };
 		3925F60F2B69121C00BF93F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925F60E2B69121C00BF93F3 /* SceneDelegate.swift */; };
 		3925F6112B69121C00BF93F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925F6102B69121C00BF93F3 /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		390C226E2B71493C00792385 /* TVSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSessionManager.swift; sourceTree = "<group>"; };
 		3925F6092B69121C00BF93F3 /* Media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3925F60C2B69121C00BF93F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3925F60E2B69121C00BF93F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				39F323AA2B6A499100389ADA /* CastModel.swift */,
 				39AE66A12B6EC29F00C2C10E /* EpisodeDetailModel.swift */,
 				39AE668D2B6B89FD00C2C10E /* TVAPI.swift */,
+				390C226E2B71493C00792385 /* TVSessionManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				39AE66992B6E729B00C2C10E /* SearchView.swift in Sources */,
 				3925F6332B692A5A00BF93F3 /* TVModel.swift in Sources */,
 				3925F6382B6934EF00BF93F3 /* PosterCollectionViewCell.swift in Sources */,
+				390C226F2B71493C00792385 /* TVSessionManager.swift in Sources */,
 				39F323AB2B6A499100389ADA /* CastModel.swift in Sources */,
 				39AE66972B6E6D4700C2C10E /* SearchViewController.swift in Sources */,
 				3925F60F2B69121C00BF93F3 /* SceneDelegate.swift in Sources */,

@@ -27,26 +27,37 @@ class EpisodeViewController: UIViewController {
         mainView.episodeTableView.dataSource = self
         
         let group = DispatchGroup()
-
+        
         group.enter()
-        TVAPIManager.shared.APIcall(type: CastModel.self, api: .cast(code: mainView.dramaCode)) { cast in
-            self.mainView.castList = cast
+        TVAPIManager.shared.APIcall(type: CastModel.self, api: .cast(code: mainView.dramaCode)) { cast, error in
+            if let cast = cast {
+                self.mainView.castList = cast
+            } else {
+                print("지금 통신에 뭔가 문제가 있다 내 문제는 잠이 너무 오는 것임ㅠ...")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        TVAPIManager.shared.APIcall(type: TVModel.self, api: .recommand(code: mainView.dramaCode)) { tv, error in
+            if let tv = tv {
+                self.mainView.recommandList = tv
+            } else {
+                print("지금 통신에 뭔가 문제가 있다 내 문제는 잠이 너무 오는 것임ㅠ...")
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        TVAPIManager.shared.APIcall(type: DramaModel.self, api: .detail(code: mainView.dramaCode)) { drama, error in
+            if let drama = drama {
+                self.mainView.dramaList = drama
+            } else {
+                print("지금 통신에 뭔가 문제가 있다 내 문제는 잠이 너무 오는 것임ㅠ...")
+            }
             group.leave()
         }
 
-        group.enter()
-        TVAPIManager.shared.APIcall(type: TVModel.self, api: .recommand(code: mainView.dramaCode)) { tv in
-            self.mainView.recommandList = tv
-            group.leave()
-        }
-        
-        group.enter()
-        TVAPIManager.shared.APIcall(type: DramaModel.self, api: .detail(code: mainView.dramaCode)) { drama in
-            self.mainView.dramaList = drama
-            group.leave()
-        }
-        
-        
         group.notify(queue: .main) {
             print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️")
             self.mainView.configureView()
