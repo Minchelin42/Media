@@ -23,7 +23,12 @@ enum Profile: String, CaseIterable {
                                      ]
 }
 
-var profileInfo = ["", "", "", "", ""]
+var profileInfo: [Profile : String] = [ .name : "",
+                                        .nickName : "",
+                                        .gender : "",
+                                        .introduce : "",
+                                        .link : ""
+                                      ]
 
 class ProfileViewController: UIViewController {
 
@@ -55,9 +60,22 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.titleLabel.text = Profile.allCases[indexPath.row].rawValue
         
-        cell.profileLabel.text = profileInfo[indexPath.row].isEmpty ? Profile.allCases[indexPath.row].rawValue : profileInfo[indexPath.row]
+        cell.profileLabel.text = profileInfo[Profile.allCases[indexPath.row]]!.isEmpty ? Profile.allCases[indexPath.row].rawValue : profileInfo[Profile.allCases[indexPath.row]]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ProfileEditViewController()
+        vc.mainView.title = Profile.allCases[indexPath.row].rawValue
+        vc.mainView.nowInput = profileInfo[Profile.allCases[indexPath.row]]!
+        
+        vc.inputInfo = { value in
+            profileInfo[Profile.allCases[indexPath.row]] = value
+            tableView.reloadData()
+        }
+
+        present(vc, animated: true)
     }
  
 }

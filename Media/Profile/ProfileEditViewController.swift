@@ -9,8 +9,7 @@ import UIKit
 
 class ProfileEditViewController: UIViewController {
 
-    var nowEdit: Profile = Profile.name
-    
+    var inputInfo: ((String) -> Void)?
     let mainView = ProfileEditView()
     
     override func loadView() {
@@ -21,6 +20,12 @@ class ProfileEditViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .black
+        
+        mainView.inputTextField.delegate = self
+        
+        mainView.titleLabel.text = "\(mainView.title)"
+        mainView.inputTextField.text = "\(mainView.nowInput)"
+        mainView.inputTextField.placeholder = "\(mainView.title)"
     }
 }
 
@@ -39,6 +44,14 @@ extension UITextField {
     
     @objc func textFieldclear(sender: UIButton) {
         self.text = ""
+    }
+}
+
+extension ProfileEditViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        inputInfo?(mainView.inputTextField.text!)
+        dismiss(animated: true)
+        return true
     }
 }
 

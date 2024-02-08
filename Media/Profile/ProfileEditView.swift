@@ -12,6 +12,8 @@ class ProfileEditView: BaseView {
     let titleLabel = UILabel()
     let inputTextField = UITextField()
     
+    var title = ""
+    var nowInput = ""
     
     override func configureHierarchy() {
         addSubview(titleLabel)
@@ -33,11 +35,9 @@ class ProfileEditView: BaseView {
     }
     
     override func configureView() {
-        titleLabel.text = "이름"
         titleLabel.textColor = .gray
         titleLabel.font = .systemFont(ofSize: 13, weight: .semibold)
-        
-        inputTextField.placeholder = "내용을 입력해주세요"
+
         inputTextField.font = .systemFont(ofSize: 15, weight: .medium)
         inputTextField.textColor = .white
         inputTextField.backgroundColor = .black
@@ -46,3 +46,4 @@ class ProfileEditView: BaseView {
     }
 
 }
+
