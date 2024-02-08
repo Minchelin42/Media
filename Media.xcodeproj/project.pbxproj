@@ -11,6 +11,8 @@
 		390C23092B7505BB00792385 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C23082B7505BB00792385 /* ProfileViewController.swift */; };
 		390C230C2B7505FC00792385 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C230B2B7505FC00792385 /* ProfileView.swift */; };
 		390C230E2B7511AB00792385 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C230D2B7511AB00792385 /* ProfileTableViewCell.swift */; };
+		390C23102B75229600792385 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C230F2B75229600792385 /* ProfileEditViewController.swift */; };
+		390C23122B75357800792385 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C23112B75357800792385 /* ProfileEditView.swift */; };
 		3925F60D2B69121C00BF93F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925F60C2B69121C00BF93F3 /* AppDelegate.swift */; };
 		3925F60F2B69121C00BF93F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925F60E2B69121C00BF93F3 /* SceneDelegate.swift */; };
 		3925F6112B69121C00BF93F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925F6102B69121C00BF93F3 /* ViewController.swift */; };
@@ -55,6 +57,8 @@
 		390C23082B7505BB00792385 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		390C230B2B7505FC00792385 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		390C230D2B7511AB00792385 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		390C230F2B75229600792385 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
+		390C23112B75357800792385 /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		3925F6092B69121C00BF93F3 /* Media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3925F60C2B69121C00BF93F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3925F60E2B69121C00BF93F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				390C23082B7505BB00792385 /* ProfileViewController.swift */,
 				390C230B2B7505FC00792385 /* ProfileView.swift */,
 				390C230D2B7511AB00792385 /* ProfileTableViewCell.swift */,
+				390C230F2B75229600792385 /* ProfileEditViewController.swift */,
+				390C23112B75357800792385 /* ProfileEditView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 			files = (
 				39F323A72B6A369A00389ADA /* RecommandTableViewCell.swift in Sources */,
 				3925F6362B69313A00BF93F3 /* MainViewController.swift in Sources */,
+				390C23122B75357800792385 /* ProfileEditView.swift in Sources */,
 				3925F6112B69121C00BF93F3 /* ViewController.swift in Sources */,
 				390C230E2B7511AB00792385 /* ProfileTableViewCell.swift in Sources */,
 				3925F60D2B69121C00BF93F3 /* AppDelegate.swift in Sources */,
@@ -343,6 +350,7 @@
 				390C230C2B7505FC00792385 /* ProfileView.swift in Sources */,
 				3925F60F2B69121C00BF93F3 /* SceneDelegate.swift in Sources */,
 				39F323AD2B6A625100389ADA /* OverViewLabel.swift in Sources */,
+				390C23102B75229600792385 /* ProfileEditViewController.swift in Sources */,
 				39AE66A02B6EB47200C2C10E /* EpisodeDetailTableViewCell.swift in Sources */,
 				39F323A12B6A217200389ADA /* EpisodeViewController.swift in Sources */,
 				39AE668A2B6B86AB00C2C10E /* EpisodeView.swift in Sources */,
