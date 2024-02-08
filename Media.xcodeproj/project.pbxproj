@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		390C226F2B71493C00792385 /* TVSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C226E2B71493C00792385 /* TVSessionManager.swift */; };
+		390C23092B7505BB00792385 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C23082B7505BB00792385 /* ProfileViewController.swift */; };
+		390C230C2B7505FC00792385 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C230B2B7505FC00792385 /* ProfileView.swift */; };
+		390C230E2B7511AB00792385 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C230D2B7511AB00792385 /* ProfileTableViewCell.swift */; };
 		3925F60D2B69121C00BF93F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925F60C2B69121C00BF93F3 /* AppDelegate.swift */; };
 		3925F60F2B69121C00BF93F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925F60E2B69121C00BF93F3 /* SceneDelegate.swift */; };
 		3925F6112B69121C00BF93F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925F6102B69121C00BF93F3 /* ViewController.swift */; };
@@ -49,6 +52,9 @@
 
 /* Begin PBXFileReference section */
 		390C226E2B71493C00792385 /* TVSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSessionManager.swift; sourceTree = "<group>"; };
+		390C23082B7505BB00792385 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		390C230B2B7505FC00792385 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		390C230D2B7511AB00792385 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		3925F6092B69121C00BF93F3 /* Media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3925F60C2B69121C00BF93F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3925F60E2B69121C00BF93F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +107,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		390C230A2B7505BF00792385 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				390C23082B7505BB00792385 /* ProfileViewController.swift */,
+				390C230B2B7505FC00792385 /* ProfileView.swift */,
+				390C230D2B7511AB00792385 /* ProfileTableViewCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		3925F6002B69121C00BF93F3 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +137,7 @@
 		3925F60B2B69121C00BF93F3 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				390C230A2B7505BF00792385 /* Profile */,
 				39AE669C2B6EAC8800C2C10E /* EpisodeDetail */,
 				39AE66952B6E6D2A00C2C10E /* Search */,
 				39AE66862B6B862000C2C10E /* Base */,
@@ -301,6 +318,7 @@
 				39F323A72B6A369A00389ADA /* RecommandTableViewCell.swift in Sources */,
 				3925F6362B69313A00BF93F3 /* MainViewController.swift in Sources */,
 				3925F6112B69121C00BF93F3 /* ViewController.swift in Sources */,
+				390C230E2B7511AB00792385 /* ProfileTableViewCell.swift in Sources */,
 				3925F60D2B69121C00BF93F3 /* AppDelegate.swift in Sources */,
 				39F323A52B6A315300389ADA /* EpisodeTableViewCell.swift in Sources */,
 				3925F6232B6912A800BF93F3 /* APIKey.swift in Sources */,
@@ -310,6 +328,7 @@
 				3925F63F2B694CB100BF93F3 /* PosterTableViewCell.swift in Sources */,
 				39AE668E2B6B89FD00C2C10E /* TVAPI.swift in Sources */,
 				39AE669B2B6EAC8100C2C10E /* EpisodeDetailView.swift in Sources */,
+				390C23092B7505BB00792385 /* ProfileViewController.swift in Sources */,
 				3925F6432B69604800BF93F3 /* RedBackgroundTextLabel.swift in Sources */,
 				39AE669E2B6EAC9A00C2C10E /* EpisodeDetailViewController.swift in Sources */,
 				39F323A92B6A44C400389ADA /* DramaModel.swift in Sources */,
@@ -321,6 +340,7 @@
 				390C226F2B71493C00792385 /* TVSessionManager.swift in Sources */,
 				39F323AB2B6A499100389ADA /* CastModel.swift in Sources */,
 				39AE66972B6E6D4700C2C10E /* SearchViewController.swift in Sources */,
+				390C230C2B7505FC00792385 /* ProfileView.swift in Sources */,
 				3925F60F2B69121C00BF93F3 /* SceneDelegate.swift in Sources */,
 				39F323AD2B6A625100389ADA /* OverViewLabel.swift in Sources */,
 				39AE66A02B6EB47200C2C10E /* EpisodeDetailTableViewCell.swift in Sources */,
