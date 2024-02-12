@@ -25,7 +25,7 @@ class ProfileEditViewController: UIViewController {
         
         mainView.titleLabel.text = "\(mainView.title)"
         mainView.inputTextField.text = "\(mainView.nowInput)"
-        mainView.inputTextField.placeholder = "\(mainView.title)"
+        mainView.inputTextField.placeholder = "\(mainView.title) 추가"
     }
 }
 

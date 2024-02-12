@@ -26,6 +26,8 @@ class EpisodeView: BaseView {
     
     let dramaOverView = OverViewLabel()
     
+    let videoButton = UIButton()
+    
     lazy var castingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
     let episodeTableView = UITableView()
     
@@ -43,6 +45,7 @@ class EpisodeView: BaseView {
         addSubview(overlayView)
         addSubview(dramaTitle)
         addSubview(dramaOverView)
+        addSubview(videoButton)
         addSubview(castingCollectionView)
         addSubview(episodeTableView)
     }
@@ -51,13 +54,14 @@ class EpisodeView: BaseView {
         print("🩷🩷🩷🩷🩷🩷🩷🩷🩷" + #function)
         dramaPoster.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            make.height.equalTo(320)
+            make.height.equalTo(370)
         }
         
         overlayView.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalToSuperview()
             make.top.equalTo(self)
         }
+        
         dramaTitle.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(15)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
@@ -69,8 +73,15 @@ class EpisodeView: BaseView {
             make.height.lessThanOrEqualTo(105)
         }
         
+        videoButton.snp.makeConstraints { make in
+            make.top.equalTo(dramaOverView.snp.bottom).offset(10)
+            make.leading.equalTo(10)
+            make.width.equalTo(150)
+            make.height.equalTo(40)
+        }
+        
         castingCollectionView.snp.makeConstraints { make in
-            make.bottom.equalTo(dramaPoster.snp.bottom).inset(20)
+            make.top.equalTo(videoButton.snp.bottom).offset(15)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(140)
         }
@@ -89,6 +100,14 @@ class EpisodeView: BaseView {
         dramaTitle.text = "\(dramaList.name)"
         
         dramaOverView.text = "\(dramaList.overview)"
+        
+        videoButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        videoButton.setTitle("  예고편 보기", for: .normal)
+        videoButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
+        videoButton.tintColor = .white
+        videoButton.backgroundColor = .darkGray
+        videoButton.clipsToBounds = true
+        videoButton.layer.cornerRadius = 5
         
         castingCollectionView.register(CastingCollectionViewCell.self, forCellWithReuseIdentifier: "Casting")
         castingCollectionView.backgroundColor = .clear
