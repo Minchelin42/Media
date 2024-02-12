@@ -18,6 +18,7 @@ enum TVAPI {
     case recommand(code: Int)
     case search(query: String)
     case episodeDetail(code: Int, season: Int)
+    case video(code: Int)
 
     var baseURL: String {
         return "https://api.themoviedb.org/3/"
@@ -41,6 +42,8 @@ enum TVAPI {
             return URL(string: baseURL + "search/tv")!
         case .episodeDetail(let code, let season):
             return URL(string: baseURL + "tv/\(code)/season/\(season)")!
+        case .video(let code):
+            return URL(string: baseURL + "tv/\(code)/videos")!
         }
     }
     
@@ -70,6 +73,8 @@ enum TVAPI {
         case .search(let query):
             return ["query" : query, "language" : "ko-KR"]
         case .episodeDetail:
+            return ["language" : "ko-KR"]
+        case .video:
             return ["language" : "ko-KR"]
         }
     }
