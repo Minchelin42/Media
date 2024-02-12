@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Toast
 
 class EpisodeViewController: UIViewController {
     
@@ -64,8 +65,34 @@ class EpisodeViewController: UIViewController {
             self.mainView.castingCollectionView.reloadData()
             self.mainView.episodeTableView.reloadData()
         }
+        
+        mainView.videoButton.addTarget(self, action: #selector(self.playVideo), for: .touchUpInside)
 
     }
+    
+    @objc func playVideo(sender: UIButton) {
+        print("비디오 클릭버튼")
+        
+        let vc = VideoViewController()
+        
+        TVAPIManager.shared.APIcall(type: VideoModel.self, api: .video(code: mainView.dramaCode)) { result, error in
+            if let result = result {
+                if(result.results.count > 0) {
+                    vc.mainView.key = result.results[0].key
+                    self.present(vc, animated: true)
+                } else {
+                    var style = ToastStyle()
+                    style.messageColor = .white
+                    self.view.makeToast("죄송합니다. 아직 등록된 예고편이 없습니다", duration: 2.0, position: .bottom, style: style)
+                }
+            } else {
+                print("통신 오류 발생")
+            }
+
+        }
+    
+    }
+    
     
 
 

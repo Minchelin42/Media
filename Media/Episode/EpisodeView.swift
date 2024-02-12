@@ -108,7 +108,6 @@ class EpisodeView: BaseView {
         videoButton.backgroundColor = .darkGray
         videoButton.clipsToBounds = true
         videoButton.layer.cornerRadius = 5
-        
         castingCollectionView.register(CastingCollectionViewCell.self, forCellWithReuseIdentifier: "Casting")
         castingCollectionView.backgroundColor = .clear
 
@@ -117,7 +116,7 @@ class EpisodeView: BaseView {
         episodeTableView.register(RecommandTableViewCell.self, forCellReuseIdentifier: "RecommandTableViewCell")
         episodeTableView.backgroundColor = .black
     }
-    
+
     
     
     func configureCollectionViewLayout() -> UICollectionViewLayout {
