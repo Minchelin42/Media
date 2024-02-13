@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CastingCollectionViewCell: UICollectionViewCell {
+final class CastingCollectionViewCell: UICollectionViewCell {
     
     let personImage = PosterImageView(frame: .zero)
     let nameLabel: UILabel = {
@@ -30,12 +30,12 @@ class CastingCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         contentView.addSubview(personImage)
         contentView.addSubview(nameLabel)
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         personImage.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
@@ -47,7 +47,7 @@ class CastingCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func configureView() {
+    private func configureView() {
         personImage.backgroundColor = .black
     }
     

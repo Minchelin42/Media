@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EpisodeTableViewCell: UITableViewCell {
+final class EpisodeTableViewCell: UITableViewCell {
 
     let episodeImage = PosterImageView(frame: .zero)
     let episodeTitleLabel = PosterTextLabel()
@@ -24,13 +24,13 @@ class EpisodeTableViewCell: UITableViewCell {
         configureView()
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         contentView.addSubview(episodeImage)
         contentView.addSubview(episodeTitleLabel)
         contentView.addSubview(overViewLabel)
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         episodeImage.snp.makeConstraints { make in
             make.verticalEdges.equalTo(contentView).inset(10)
             make.leading.equalTo(contentView).offset(10)
@@ -55,7 +55,7 @@ class EpisodeTableViewCell: UITableViewCell {
         
     }
     
-    func configureView() {
+    private func configureView() {
         episodeImage.backgroundColor = .black
     }
     

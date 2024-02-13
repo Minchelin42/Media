@@ -39,7 +39,7 @@ class SearchView: BaseView {
     }
     
     
-    func configureCollectionViewLayout() -> UICollectionViewLayout {
+    private func configureCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 20) / 3, height: 180)
         layout.minimumLineSpacing = 5

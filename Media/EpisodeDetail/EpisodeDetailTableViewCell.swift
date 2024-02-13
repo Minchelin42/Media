@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EpisodeDetailTableViewCell: UITableViewCell {
+final class EpisodeDetailTableViewCell: UITableViewCell {
     
     let stillImage = UIImageView()
     let playButton = UIButton()
@@ -25,7 +25,7 @@ class EpisodeDetailTableViewCell: UITableViewCell {
         configureView()
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         contentView.addSubview(stillImage)
         stillImage.addSubview(playButton)
         contentView.addSubview(episodeTitle)
@@ -33,7 +33,7 @@ class EpisodeDetailTableViewCell: UITableViewCell {
         contentView.addSubview(timeLabel)
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         stillImage.snp.makeConstraints { make in
             make.top.leading.equalTo(15)
             make.bottom.equalTo(self).inset(30)
@@ -66,7 +66,7 @@ class EpisodeDetailTableViewCell: UITableViewCell {
         
     }
     
-    func configureView() {
+    private func configureView() {
         stillImage.backgroundColor = .systemPink
         stillImage.clipsToBounds = true
         stillImage.layer.cornerRadius = 10

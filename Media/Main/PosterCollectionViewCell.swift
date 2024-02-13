@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PosterCollectionViewCell: UICollectionViewCell {
+final class PosterCollectionViewCell: UICollectionViewCell {
     let posterImageView = PosterImageView(frame: .zero)
     let textLabel = RedBackgroundTextLabel()
     let posterNameLabel = PosterTextLabel()
@@ -20,13 +20,13 @@ class PosterCollectionViewCell: UICollectionViewCell {
         configureView()
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         contentView.addSubview(posterImageView)
         contentView.addSubview(textLabel)
         contentView.addSubview(posterNameLabel)
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         posterImageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
@@ -43,7 +43,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureView() {
+    private func configureView() {
         posterImageView.image = UIImage(systemName: "suit.heart")
     }
     

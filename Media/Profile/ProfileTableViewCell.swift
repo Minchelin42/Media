@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileTableViewCell: UITableViewCell {
+final class ProfileTableViewCell: UITableViewCell {
 
     let titleLabel = UILabel()
     let profileLabel = UILabel()
@@ -22,12 +22,12 @@ class ProfileTableViewCell: UITableViewCell {
         configureView()
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(profileLabel)
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         titleLabel.snp.makeConstraints { make in
             make.leading.equalTo(10)
             make.centerY.equalToSuperview()
@@ -43,7 +43,7 @@ class ProfileTableViewCell: UITableViewCell {
         }
     }
     
-    func configureView() {
+    private func configureView() {
         titleLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         titleLabel.textColor = .lightGray
         

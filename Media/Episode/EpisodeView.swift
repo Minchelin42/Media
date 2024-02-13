@@ -119,7 +119,7 @@ class EpisodeView: BaseView {
 
     
     
-    func configureCollectionViewLayout() -> UICollectionViewLayout {
+    private func configureCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 4, height: 140)
         layout.minimumLineSpacing = 5

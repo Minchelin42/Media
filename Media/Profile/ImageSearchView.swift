@@ -49,7 +49,7 @@ class ImageSearchView: BaseView {
         collectionView.register(CastingCollectionViewCell.self, forCellWithReuseIdentifier: "Casting")
     }
     
-    func configureCollectionViewLayout() -> UICollectionViewLayout {
+    private func configureCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 20) / 3, height: (UIScreen.main.bounds.width - 20) / 3)
         layout.minimumLineSpacing = 5

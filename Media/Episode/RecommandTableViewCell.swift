@@ -7,10 +7,10 @@
 
 import UIKit
 
-class RecommandTableViewCell: UITableViewCell {
+final class RecommandTableViewCell: UITableViewCell {
 
     let titleLabel = PosterTextLabel()
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,12 +22,12 @@ class RecommandTableViewCell: UITableViewCell {
         configureView()
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(collectionView)
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).inset(10)
             make.leading.equalTo(contentView).offset(10)
@@ -40,12 +40,12 @@ class RecommandTableViewCell: UITableViewCell {
         }
     }
     
-    func configureView() {
+    private func configureView() {
         titleLabel.text = "비슷한 컨텐츠"
         collectionView.backgroundColor = .clear
     }
     
-    static func configureCollectionViewLayout() -> UICollectionViewLayout {
+    private func configureCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 90, height: 110)
         layout.minimumLineSpacing = 5

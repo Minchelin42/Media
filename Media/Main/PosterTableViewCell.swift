@@ -7,10 +7,10 @@
 
 import UIKit
 
-class PosterTableViewCell: UITableViewCell {
+final class PosterTableViewCell: UITableViewCell {
 
     let titleLabel = PosterTextLabel()
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,12 +22,12 @@ class PosterTableViewCell: UITableViewCell {
         configureView()
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(collectionView)
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(5)
             make.leading.equalTo(contentView).inset(15)
@@ -40,12 +40,12 @@ class PosterTableViewCell: UITableViewCell {
         }
     }
     
-    func configureView() {
+    private func configureView() {
         titleLabel.backgroundColor = .clear
         collectionView.backgroundColor = .clear
     }
     
-    static func configureCollectionViewLayout() -> UICollectionViewLayout {
+    private func configureCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 3, height: 160)
         layout.minimumLineSpacing = 5
