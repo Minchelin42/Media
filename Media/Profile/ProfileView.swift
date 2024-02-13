@@ -42,6 +42,7 @@ class ProfileView: BaseView {
     override func configureView() {
         profileImage.image = UIImage(systemName: "suit.heart")
         profileImage.backgroundColor = .white
+        profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
         profileImage.layer.cornerRadius = 50
         

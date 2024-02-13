@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 enum Profile: String, CaseIterable {
     case name = "이름"
@@ -45,7 +46,18 @@ class ProfileViewController: UIViewController {
         
         mainView.profileTableView.delegate = self
         mainView.profileTableView.dataSource = self
+        mainView.imageEditButton.addTarget(self, action: #selector(self.editButtonClicked), for: .touchUpInside)
 
+    }
+    
+    @objc func editButtonClicked(sender: UIButton) {
+        let vc = ImageSearchViewController()
+        vc.selectImage = { value in
+            let url = URL(string: value)
+            self.mainView.profileImage.kf.setImage(with: url)
+        }
+        
+        present(vc, animated: true)
     }
 
 }
